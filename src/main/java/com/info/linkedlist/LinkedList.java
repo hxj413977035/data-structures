@@ -5,7 +5,7 @@ package com.info.linkedlist;
  */
 public class LinkedList<E> {
 
-    private class Node {
+    public class Node {
         public E e;
 
         public Node next;
@@ -131,14 +131,24 @@ public class LinkedList<E> {
     }
 
     public String toString() {
-        return "";
+        StringBuilder sb = new StringBuilder();
+//        Node cur = dummyhead.next;
+//        while (cur != null) {
+//            sb.append(cur.e).append("-->");
+//            cur = cur.next;
+//        }
+        for (Node cur = dummyhead.next; cur != null; cur = cur.next)
+            sb.append(cur.e).append("-->");
+
+        sb.append("null");
+        return sb.toString();
     }
 
     public E remove(int index) {
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("index is inconrrect");
         }
-        Node prev = dummyhead.next;
+        Node prev = dummyhead;
         for (int i = 0; i < index; i++) {
             prev = prev.next;
         }
@@ -162,7 +172,15 @@ public class LinkedList<E> {
         LinkedList<Integer> linkedList = new LinkedList<Integer>();
         for (int i = 0; i < 5; i++) {
             linkedList.addFirst(i);
-            System.out.println(linkedList);
+            System.out.println(linkedList.toString());
         }
+        linkedList.add(2,666);
+        System.out.println(linkedList.toString());
+        linkedList.remove(2);
+        System.out.println(linkedList.toString());
+        linkedList.removeFirst();
+        System.out.println(linkedList.toString());
+        linkedList.removeLast();
+        System.out.println(linkedList.toString());
     }
 }
